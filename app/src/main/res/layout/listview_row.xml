@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:id="@+id/relativeLayout1"
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/extID"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="extID"
+        android:layout_weight="1.5">
+    </TextView>
+
+    <TextView
+        android:id="@+id/byteZero"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Byte0"
+        android:layout_weight="1">
+    </TextView>
+
+    <TextView
+        android:id="@+id/byteOne"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Byte1"
+        android:layout_weight="1">
+    </TextView>
+
+    <TextView
+        android:id="@+id/byteTwo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Byte2"
+        android:layout_weight="1">
+    </TextView>
+
+    <TextView
+        android:id="@+id/byteThree"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Byte3"
+        android:layout_weight="1">
+    </TextView>
+
+    <TextView
+        android:id="@+id/byteFour"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Byte4"
+        android:layout_weight="1">
+    </TextView>
+
+    <TextView
+        android:id="@+id/byteFive"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Byte5"
+        android:layout_weight="1">
+    </TextView>
+
+    <TextView
+        android:id="@+id/byteSix"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Byte6"
+        android:layout_weight="1">
+    </TextView>
+
+    <TextView
+        android:id="@+id/byteSeven"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Byte7"
+        android:layout_weight="1">
+    </TextView>
+</LinearLayout>
