@@ -1,78 +1,53 @@
 package com.example.alperkaya.hexremote;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.widget.ListView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+public class SendActivity extends Activity {
 
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity {
-
-    private ListView mCanView;
-    private CanAdapter mCanAdapter;
     private ProgressDialog pDialog;
 
     // API urls
-    // Url to get all CAN messages
-    private String URL_GET_CAN_MSG = "http://alperkaya.duckdns.org/hex_api/get_canmsg.php";
-
-    private ArrayList<CanMessage> mCanList;
+    // Url to update CAN messages
+    private String URL_POST_CAN_MSG = "http://alperkaya.duckdns.org/hex_api/create_canmsg.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        mCanList = new ArrayList<CanMessage>();
-        mCanView = (ListView) findViewById(R.id.listView);
-
-        new GetCanMessages().execute();
+        setContentView(R.layout.activity_send);
     }
 
-    private void populateListView() {
-        mCanAdapter = new CanAdapter(getApplicationContext(), mCanList);
-        mCanView.setAdapter(mCanAdapter);
 
-    }
+    private class CreateCanMessages extends AsyncTask<Void, Void, Void> {
+        boolean isNewCANmsgCreated = false;
 
-    public void onSendCANmsg(View v) {
-        Intent intent = new Intent(MainActivity.this, SendActivity.class);
-        startActivity(intent);
-    }
-
-    private class GetCanMessages extends AsyncTask<Void, Void, Void> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(MainActivity.this);
-            pDialog.setMessage("Fetching CAN messages..");
+            pDialog = new ProgressDialog(SendActivity.this);
+            pDialog.setMessage("Creating new category..");
             pDialog.setCancelable(false);
             pDialog.show();
 
         }
 
+
         @Override
         protected Void doInBackground(Void... arg0) {
             ServiceHandler jsonParser = new ServiceHandler(getApplicationContext());
-            String json = jsonParser.makeServiceCall(URL_GET_CAN_MSG, ServiceHandler.GET);
+            String json = jsonParser.makeServiceCall(URL_POST_CAN_MSG, ServiceHandler.POST);
 
             Log.e("Response: ", "> " + json);
 
             if (json != null) {
-                try {
+                /*try {
                     JSONObject jsonObj = new JSONObject(json);
                     if (jsonObj != null) {
 
-                        JSONArray jsonArray = jsonObj
+                        *//*JSONArray jsonArray = jsonObj
                                 .getJSONArray("CANmsg");
 
                         for (int i = 0; i < jsonArray.length(); i++) {
@@ -87,13 +62,13 @@ public class MainActivity extends AppCompatActivity {
                                     canObj.getInt("data5"),
                                     canObj.getInt("data6"),
                                     canObj.getInt("data7"));
-                            mCanList.add(data);
+                            mCanList.add(data);*//*
                         }
                     }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                }
+                }*/
 
             } else {
                 Log.e("JSON Data", "Didn't receive any data from server!");
@@ -109,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
             if (pDialog.isShowing())
                 pDialog.dismiss();
 
-            populateListView();
         }
     }
 

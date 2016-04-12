@@ -42,24 +42,15 @@ public class CanAdapter extends BaseAdapter {
         return 0;
     }
 
-    private class ViewHolder {
-        TextView txtFirst;
-        TextView txtSecond;
-        TextView txtThird;
-        TextView txtFourth;
-        TextView txtFifth;
-        TextView txtSixth;
-        TextView txtSeventh;
-    }
-
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder mViewHolder;
 
         if(convertView == null){
-
-            convertView = mLayoutInflater.inflate(R.layout.listview_row, parent);
+            convertView = mLayoutInflater.inflate(R.layout.listview_row, null);
             mViewHolder = new ViewHolder();
+            mViewHolder.txtExtID = (TextView) convertView.findViewById(R.id.extID);
+            mViewHolder.txtZero = (TextView) convertView.findViewById(R.id.byteZero);
             mViewHolder.txtFirst = (TextView) convertView.findViewById(R.id.byteOne);
             mViewHolder.txtSecond = (TextView) convertView.findViewById(R.id.byteTwo);
             mViewHolder.txtThird = (TextView) convertView.findViewById(R.id.byteThree);
@@ -74,15 +65,29 @@ public class CanAdapter extends BaseAdapter {
             mViewHolder = (ViewHolder) convertView.getTag();
         }
 
-        mViewHolder.txtFirst.setText(mList.get(position).getCanByte(1));
-        mViewHolder.txtSecond.setText(mList.get(position).getCanByte(2));
-        mViewHolder.txtThird.setText(mList.get(position).getCanByte(3));
-        mViewHolder.txtFourth.setText(mList.get(position).getCanByte(4));
-        mViewHolder.txtFifth.setText(mList.get(position).getCanByte(5));
-        mViewHolder.txtSixth.setText(mList.get(position).getCanByte(6));
-        mViewHolder.txtSeventh.setText(mList.get(position).getCanByte(7));
+        mViewHolder.txtExtID.setText(String.valueOf(mList.get(position).getExtID()));
+        mViewHolder.txtZero.setText(String.valueOf(mList.get(position).getCanByte(0)));
+        mViewHolder.txtFirst.setText(String.valueOf(mList.get(position).getCanByte(1)));
+        mViewHolder.txtSecond.setText(String.valueOf(mList.get(position).getCanByte(2)));
+        mViewHolder.txtThird.setText(String.valueOf(mList.get(position).getCanByte(3)));
+        mViewHolder.txtFourth.setText(String.valueOf(mList.get(position).getCanByte(4)));
+        mViewHolder.txtFifth.setText(String.valueOf(mList.get(position).getCanByte(5)));
+        mViewHolder.txtSixth.setText(String.valueOf(mList.get(position).getCanByte(6)));
+        mViewHolder.txtSeventh.setText(String.valueOf(mList.get(position).getCanByte(7)));
 
 
         return convertView;
+    }
+
+    private class ViewHolder {
+        TextView txtExtID;
+        TextView txtZero;
+        TextView txtFirst;
+        TextView txtSecond;
+        TextView txtThird;
+        TextView txtFourth;
+        TextView txtFifth;
+        TextView txtSixth;
+        TextView txtSeventh;
     }
 }
